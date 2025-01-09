@@ -1,0 +1,6 @@
+all:
+  children:
+    all_servers:
+      hosts:
+        myserver:
+          ansible_host: 123.45.67.89

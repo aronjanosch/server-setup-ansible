@@ -1,0 +1,24 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Upgrade all packages
+  ansible.builtin.apt:
+    upgrade: dist
+    autoremove: true
+    force_apt_get: true
+
+- name: Install essential packages
+  ansible.builtin.apt:
+    name:
+      - curl
+      - vim
+      - git
+      - htop
+      - apt-transport-https
+      - ca-certificates
+      - neofetch
+    state: present
+    update_cache: true

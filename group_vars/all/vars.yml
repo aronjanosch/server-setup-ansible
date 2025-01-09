@@ -1,0 +1,10 @@
+# Public, non-sensitive variables
+user_name: "aron"
+install_docker: true
+
+# Additional users can be defined here if you wish
+# additional_users:
+#   - name: "someuser"
+#     groups: ["users"]
+#     password: "mypassword"
+#     ...
