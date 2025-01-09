@@ -36,9 +36,15 @@
     line: "{{ user_name }} ALL=(ALL) NOPASSWD: ALL"
     validate: "/usr/sbin/visudo -cf %s"
 
+- name: Copy public SSH keys from local machine
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/tmp/{{ item | basename }}"
+  loop: "{{ ssh_public_keys }}"
+
 - name: Read public SSH keys
   ansible.builtin.slurp:
-    src: "{{ item }}"
+    src: "/tmp/{{ item | basename }}"
   register: public_keys
   loop: "{{ ssh_public_keys }}"
 
