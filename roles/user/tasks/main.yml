@@ -36,13 +36,18 @@
     line: "{{ user_name }} ALL=(ALL) NOPASSWD: ALL"
     validate: "/usr/sbin/visudo -cf %s"
 
-- name: Copy the public SSH key
+- name: Read public SSH keys
+  ansible.builtin.slurp:
+    src: "{{ item }}"
+  register: public_keys
+  loop: "{{ ssh_public_keys }}"
+
+- name: Copy the public SSH keys
   ansible.posix.authorized_key:
     user: "{{ user_name }}"
     state: present
-    key: "{{ ssh_public_key }}"
-  notify:
-    - remove default user
+    key: "{{ item.content | b64decode }}"
+  loop: "{{ public_keys.results }}"
 
 - name: Create additional users (no login)
   ansible.builtin.user:

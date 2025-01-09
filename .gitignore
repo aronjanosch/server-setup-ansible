@@ -1,3 +1,3 @@
 *.retry
-group_vars/all/secret.yml
+group_vars/all/secrets.yml
 .vault_pass

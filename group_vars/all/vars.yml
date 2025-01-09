@@ -2,6 +2,10 @@
 user_name: "aron"
 install_docker: true
 
+ssh_public_keys:
+  - "~/.ssh/key1.pub"
+  - "~/.ssh/key2.pub"
+
 # Additional users can be defined here if you wish
 # additional_users:
 #   - name: "someuser"
